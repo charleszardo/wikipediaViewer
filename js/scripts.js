@@ -1,6 +1,11 @@
 $(document).ready(function() {
 	function addArticle(title, desc, link) {
-		$("#results").append
+		$("#results").append(
+			"<div class='result'><a href='" + link + "' target='_blank'>" +
+			"<h3 class='title'>" + title + "</h3>" +
+			 "<div class='desc'>" + desc + "</div>" +
+			"</a></div>"
+		)
 	}
 	
 	function populateResults(results) {
@@ -11,7 +16,11 @@ $(document).ready(function() {
 				len = titles.length;
 		
 		for (var i = 0; i < len; i++) {
-			
+			var title = titles[i],
+					desc = descs[i],
+					link = links[i];
+					
+			addArticle(title, desc, link);
 		}
 	}
 	
