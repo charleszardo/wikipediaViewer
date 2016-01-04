@@ -24,29 +24,54 @@ $(document).ready(function() {
 		}
 	}
 	
-	function wikipediaSearch(str, limit, random) {
-		var baseUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&",
-				query = "&search=" + encodeURIComponent(str),
+	function randomPage() {
+		var baseUrl = "https://en.wikipedia.org/w/api.php",
+				action = "?action=query",
+				search = "&list=random";
+				redirect = "&rnredirect=true",
+				urlTrail = "&format=json",
+				limit = "&limit=1",
+				fullUrl = baseUrl + action + search + redirect + limit + urlTrail;
+				$.ajax({
+				  dataType: "jsonp",
+				  url: fullUrl,
+				  success: function(data) {
+						var obj = data.query.random,
+							title = obj[0].title;
+						
+						wikipediaSearch(title, true);
+				  }	
+				});
+	}
+	
+	function randomRedirect(results) {
+		var links = results[3],
+				url = links[0];
+		
+		window.location.href = url;
+	}
+	
+	function wikipediaSearch(str, random, limit) {
+		var random = (random || false),
+				baseUrl = "https://en.wikipedia.org/w/api.php",
+				search = "&search=" + str,
+				urlTrail = "&format=json",
+				namespace = "&namespace=0",
 				limit = "&limit=" + (limit || 10),
-		    random = (random || false),
-				urlTrail = "&namespace=0&format=json",
-				fullUrl,
-				search;
+				action = "?action=opensearch",
+				fullUrl;
 				
-				if (random) {
-					search = "&list=random";
-				} else {
-					search = query;
-				}
-				
-				
-	 		 fullUrl = baseUrl + search + limit + urlTrail;
+	 		 	fullUrl = baseUrl + action + search + limit + namespace + urlTrail;
 		
 		$.ajax({
 		  dataType: "jsonp",
 		  url: fullUrl,
 		  success: function(data) {
-				populateResults(data);
+				if (random) {
+					randomRedirect(data);
+				} else {
+					populateResults(data);
+				}
 		  }
 		});
 	}
@@ -54,5 +79,9 @@ $(document).ready(function() {
 	$("#submit").click(function() {
 		var queryString = $("#query").val();
 		wikipediaSearch(queryString);
+	})
+	
+	$("#random").click(function() {
+		randomPage();
 	})
 })
