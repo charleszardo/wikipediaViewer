@@ -58,6 +58,7 @@ $(document).ready(function() {
 		
 				console.log(url);
 				randomUrl = url;
+				document.getElementById("random").disabled = false;
 	}
 	
 	function wikipediaSearch(str, random, limit) {
@@ -92,6 +93,7 @@ $(document).ready(function() {
 	
 	$("#random").click(function() {
 		OpenInNewTab(randomUrl);
+		randomPage();
 	})
 	
 	randomPage();
