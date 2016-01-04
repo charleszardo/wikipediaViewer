@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	var randomUrl;
+	
+	function OpenInNewTab(url) {
+	  var win = window.open(url, '_blank');
+		console.log(win);
+	  win.focus();
+	}
+	
 	function addArticle(title, desc, link) {
 		$("#results").append(
 			"<div class='result'><a href='" + link + "' target='_blank'>" +
@@ -48,7 +56,8 @@ $(document).ready(function() {
 		var links = results[3],
 				url = links[0];
 		
-		window.location.href = url;
+				console.log(url);
+				randomUrl = url;
 	}
 	
 	function wikipediaSearch(str, random, limit) {
@@ -82,6 +91,8 @@ $(document).ready(function() {
 	})
 	
 	$("#random").click(function() {
-		randomPage();
+		OpenInNewTab(randomUrl);
 	})
+	
+	randomPage();
 })
