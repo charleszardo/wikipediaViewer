@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	var randomUrl;
 	
+  var currentRecs = [
+    { value: '', data: '' },
+  ];
+	
 	function OpenInNewTab(url) {
 	  var win = window.open(url, '_blank');
 	  win.focus();
@@ -17,9 +21,18 @@ $(document).ready(function() {
 	
 	function recommendations(results) {
 		var titles = results[1],
-				links = results[3];
+				links = results[3],
+				len = titles.length;
 				
-				console.log(titles);
+				for (var i = 0; i < len; i++) {
+					var title = titles[i],
+							link = links[i],
+							obj = { value: title, data: link }
+							currentRecs.push(obj);
+				}
+				console.log('wut')
+				console.log(currentRecs);
+				console.log('wut')
 	}
 	
 	function populateResults(results) {
@@ -101,7 +114,7 @@ $(document).ready(function() {
 	}) 
 	
 	$("#submit").click(function() {
-		var queryString = $("#query").val();
+		var queryString = $("#autocomplete").val();
 		wikipediaSearch(queryString, false, 10, false);
 	})
 	
@@ -111,4 +124,13 @@ $(document).ready(function() {
 	})
 	
 	randomPage();
+	
+	$(function() {
+	    $( "#query" ).autocomplete({
+	      source: currentRecs
+	    });
+	  });
+	// $( "#tags" ).autocomplete({
+// 		source: currentRecs
+// 	});
 })
