@@ -24,12 +24,23 @@ $(document).ready(function() {
 		}
 	}
 	
-	function wikipediaSearch(str, limit) {
-		var baseUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search=",
-				query = encodeURIComponent(str),
+	function wikipediaSearch(str, limit, random) {
+		var baseUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&",
+				query = "&search=" + encodeURIComponent(str),
 				limit = "&limit=" + (limit || 10),
+		    random = (random || false),
 				urlTrail = "&namespace=0&format=json",
-				fullUrl = baseUrl + query + limit + urlTrail;
+				fullUrl,
+				search;
+				
+				if (random) {
+					search = "&list=random";
+				} else {
+					search = query;
+				}
+				
+				
+	 		 fullUrl = baseUrl + search + limit + urlTrail;
 		
 		$.ajax({
 		  dataType: "jsonp",
