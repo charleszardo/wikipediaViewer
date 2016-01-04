@@ -15,6 +15,13 @@ $(document).ready(function() {
 		)
 	}
 	
+	function recommendations(results) {
+		var titles = results[1],
+				links = results[3];
+				
+				console.log(titles);
+	}
+	
 	function populateResults(results) {
 		$("#results").empty();
 		
@@ -48,7 +55,7 @@ $(document).ready(function() {
 						var obj = data.query.random,
 							title = obj[0].title;
 						
-						wikipediaSearch(title, true);
+						wikipediaSearch(title, true, 10, false);
 				  }	
 				});
 	}
@@ -61,7 +68,7 @@ $(document).ready(function() {
 				$("#random").prop("disabled",false);
 	}
 	
-	function wikipediaSearch(str, random, limit) {
+	function wikipediaSearch(str, random, limit, dropdown) {
 		var random = (random || false),
 				baseUrl = "https://en.wikipedia.org/w/api.php",
 				search = "&search=" + str,
@@ -79,6 +86,8 @@ $(document).ready(function() {
 		  success: function(data) {
 				if (random) {
 					randomRedirect(data);
+				} else if (dropdown) {
+					recommendations(data);
 				} else {
 					populateResults(data);
 				}
@@ -86,9 +95,14 @@ $(document).ready(function() {
 		});
 	}
 	
+	$("#query").keyup(function() {
+		var val = $("#query").val();
+		wikipediaSearch(val, false, 10, true);
+	}) 
+	
 	$("#submit").click(function() {
 		var queryString = $("#query").val();
-		wikipediaSearch(queryString);
+		wikipediaSearch(queryString, false, 10, false);
 	})
 	
 	$("#random").click(function() {
