@@ -3,7 +3,6 @@ $(document).ready(function() {
 	
 	function OpenInNewTab(url) {
 	  var win = window.open(url, '_blank');
-		console.log(win);
 	  win.focus();
 	}
 	
@@ -17,6 +16,8 @@ $(document).ready(function() {
 	}
 	
 	function populateResults(results) {
+		$("#results").empty();
+		
 		var term = results[0],
 				titles = results[1],
 				descs = results[2],
@@ -54,11 +55,10 @@ $(document).ready(function() {
 	
 	function randomRedirect(results) {
 		var links = results[3],
-				url = links[0];
-		
-				console.log(url);
+					url = links[0];
+				
 				randomUrl = url;
-				document.getElementById("random").disabled = false;
+				$("#random").prop("disabled",false);
 	}
 	
 	function wikipediaSearch(str, random, limit) {
