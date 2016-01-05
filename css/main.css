@@ -1,4 +1,22 @@
 body {
+	background: #092B40;
 	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 	font-size: 62.5%;
+}
+
+#container {
+	margin: 0 auto;
+	text-align: center;
+	width: 70%;
+}
+
+#search {
+	margin-top: 100px;
+}
+
+.result {
+	background: #FFF;
+	text-align: left;
+	padding: 10px;
+	margin: 10px;
 }
