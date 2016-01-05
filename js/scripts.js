@@ -1,9 +1,7 @@
 $(document).ready(function() {
 	var randomUrl;
 	
-  var currentRecs = [
-    { value: '', data: '' },
-  ];
+  var currentRecs = [];
 	
 	function OpenInNewTab(url) {
 	  var win = window.open(url, '_blank');
@@ -26,13 +24,10 @@ $(document).ready(function() {
 				
 				for (var i = 0; i < len; i++) {
 					var title = titles[i],
-							link = links[i],
-							obj = { value: title, data: link }
-							currentRecs.push(obj);
+							link = links[i]
+							console.log(currentRecs.includes(title));
+							currentRecs.push(title);
 				}
-				console.log('wut')
-				console.log(currentRecs);
-				console.log('wut')
 	}
 	
 	function populateResults(results) {
@@ -82,6 +77,7 @@ $(document).ready(function() {
 	}
 	
 	function wikipediaSearch(str, random, limit, dropdown) {
+		console.log('firin!');
 		var random = (random || false),
 				baseUrl = "https://en.wikipedia.org/w/api.php",
 				search = "&search=" + str,
@@ -100,6 +96,7 @@ $(document).ready(function() {
 				if (random) {
 					randomRedirect(data);
 				} else if (dropdown) {
+					console.log(data);
 					recommendations(data);
 				} else {
 					populateResults(data);
@@ -110,7 +107,7 @@ $(document).ready(function() {
 	
 	$("#query").keyup(function() {
 		var val = $("#query").val();
-		wikipediaSearch(val, false, 10, true);
+		// wikipediaSearch(val, false, 10, true);
 	}) 
 	
 	$("#submit").click(function() {
@@ -125,11 +122,52 @@ $(document).ready(function() {
 	
 	randomPage();
 	
-	$(function() {
-	    $( "#query" ).autocomplete({
-	      source: currentRecs
-	    });
-	  });
+	$("#query").autocomplete({
+	    source: function(request, response) {
+	        $.ajax({
+	            url: "http://en.wikipedia.org/w/api.php",
+	            dataType: "jsonp",
+	            data: {
+	                'action': "opensearch",
+	                'format': "json",
+	                'search': request.term
+	            },
+	            success: function(data) {
+	                response(data[1]);
+	            }
+	        });
+	    }
+	});
+	
+	// $(function() {
+	//     var availableTags = [
+	//       "ActionScript",
+	//       "AppleScript",
+	//       "Asp",
+	//       "BASIC",
+	//       "C",
+	//       "C++",
+	//       "Clojure",
+	//       "COBOL",
+	//       "ColdFusion",
+	//       "Erlang",
+	//       "Fortran",
+	//       "Groovy",
+	//       "Haskell",
+	//       "Java",
+	//       "JavaScript",
+	//       "Lisp",
+	//       "Perl",
+	//       "PHP",
+	//       "Python",
+	//       "Ruby",
+	//       "Scala",
+	//       "Scheme"
+	//     ];
+	//     $( "#query" ).autocomplete({
+	//       source: currentRecs
+	//     });
+	//   });
 	// $( "#tags" ).autocomplete({
 // 		source: currentRecs
 // 	});
