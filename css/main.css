@@ -1,18 +1,23 @@
 body {
 	background: #092B40;
 	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
-	font-size: 62.5%;
+	font-size: 75%;
 }
 
 a {
 	text-decoration: none;
+	color: #000;
 }
 
 p {
 	color: #D96F32;
 }
 
-input:focus {
+h2 {
+	font-size: 20px;
+}
+
+input:focus, #random:focus {
 	outline:0;
 }
 
@@ -34,6 +39,18 @@ input:focus {
 	color: #FFF;
 }
 
+#random {
+	background: #D96F32;
+	border: none;
+	border-radius: 10px;
+	color: #FFF;
+	padding: 3px 10px;
+}
+
+#random:hover {
+	cursor: pointer;
+}
+
 .result {
 	background: #FFF;
 	text-align: left;
@@ -44,4 +61,8 @@ input:focus {
 
 .result:hover { 
     border-left: 5px solid #D96F32;
+}
+
+.desc {
+	font-size: 14px;
 }
