@@ -78,6 +78,7 @@ $(document).ready(function() {
 				if (random) {
 					randomRedirect(data);
 				} else {
+					console.log(data);
 					populateResults(data);
 				}
 		  }
@@ -85,7 +86,7 @@ $(document).ready(function() {
 	}
 	
 	$("#submit").click(function() {
-		var queryString = $("#autocomplete").val();
+		var queryString = $("#query").val();
 		wikipediaSearch(queryString, false, 10);
 	})
 	
