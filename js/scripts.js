@@ -110,7 +110,11 @@ $(document).ready(function() {
 	                response(data[1]);
 	            }
 	        });
-	    }
+	    },
+			select: function(event, ui) {
+				var val = ui.item.value;
+				wikipediaSearch(val, false, 10);
+			  }
 	});
 	
 	// call randomPage on page load so that random url is ready almost immediately
