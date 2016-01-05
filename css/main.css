@@ -8,6 +8,10 @@ a {
 	text-decoration: none;
 }
 
+p {
+	color: #D96F32;
+}
+
 input:focus {
 	outline:0;
 }
