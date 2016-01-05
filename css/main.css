@@ -4,6 +4,10 @@ body {
 	font-size: 62.5%;
 }
 
+a {
+	text-decoration: none;
+}
+
 #container {
 	margin: 0 auto;
 	text-align: center;
@@ -14,9 +18,20 @@ body {
 	margin-top: 100px;
 }
 
+#query {
+	border: 2px solid #D96F32;
+	padding: 2px 10px;
+	border-radius: 20px;
+}
+
 .result {
 	background: #FFF;
 	text-align: left;
 	padding: 10px;
 	margin: 10px;
+	border-left: 5px solid transparent;
+}
+
+.result:hover { 
+    border-left: 5px solid #D96F32;
 }
