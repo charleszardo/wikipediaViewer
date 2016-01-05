@@ -113,4 +113,5 @@ $(document).ready(function() {
 	
 	// call randomPage on page load so that random url is ready almost immediately
 	randomPage();
+	$("#query").focus();
 })
