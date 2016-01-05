@@ -8,6 +8,10 @@ a {
 	text-decoration: none;
 }
 
+input:focus {
+	outline:0;
+}
+
 #container {
 	margin: 0 auto;
 	text-align: center;
@@ -20,8 +24,10 @@ a {
 
 #query {
 	border: 2px solid #D96F32;
-	padding: 2px 10px;
+	padding: 10px 20px;
 	border-radius: 20px;
+	background: transparent;
+	color: #FFF;
 }
 
 .result {
