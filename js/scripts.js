@@ -94,6 +94,13 @@ $(document).ready(function() {
 		randomPage();
 	})
 	
+	$("#query").keyup(function(event){
+	    if(event.keyCode == 13){
+				var queryString = $("#query").val();
+				wikipediaSearch(queryString, false, 10);
+	    }
+	});
+	
 	$("#query").autocomplete({
 	    source: function(request, response) {
 	        $.ajax({
