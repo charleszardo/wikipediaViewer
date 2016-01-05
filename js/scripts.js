@@ -48,7 +48,7 @@ $(document).ready(function() {
 						var obj = data.query.random,
 							title = obj[0].title;
 						
-						wikipediaSearch(title, true, 10, false);
+						wikipediaSearch(title, true, 10);
 				  }	
 				});
 	}
@@ -61,7 +61,7 @@ $(document).ready(function() {
 				$("#random").prop("disabled",false);
 	}
 	
-	function wikipediaSearch(str, random, limit, dropdown) {
+	function wikipediaSearch(str, random, limit) {
 		var random = (random || false),
 				baseUrl = "https://en.wikipedia.org/w/api.php",
 				search = "&search=" + str,
@@ -77,9 +77,6 @@ $(document).ready(function() {
 		  success: function(data) {
 				if (random) {
 					randomRedirect(data);
-				} else if (dropdown) {
-					console.log(data);
-					recommendations(data);
 				} else {
 					populateResults(data);
 				}
@@ -89,7 +86,7 @@ $(document).ready(function() {
 	
 	$("#submit").click(function() {
 		var queryString = $("#autocomplete").val();
-		wikipediaSearch(queryString, false, 10, false);
+		wikipediaSearch(queryString, false, 10);
 	})
 	
 	$("#random").click(function() {
