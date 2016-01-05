@@ -8,10 +8,10 @@ $(document).ready(function() {
 	
 	function addArticle(title, desc, link) {
 		$("#results").append(
-			"<div class='result'><a href='" + link + "' target='_blank'>" +
-			"<h3 class='title'>" + title + "</h3>" +
+			"<a href='" + link + "' target='_blank'><div class='result'>" +
+			"<h2 class='title'>" + title + "</h3>" +
 			 "<div class='desc'>" + desc + "</div>" +
-			"</a></div>"
+			"</div></a>"
 		)
 	}
 	
