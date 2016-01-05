@@ -78,7 +78,6 @@ $(document).ready(function() {
 				if (random) {
 					randomRedirect(data);
 				} else {
-					console.log(data);
 					populateResults(data);
 				}
 		  }
