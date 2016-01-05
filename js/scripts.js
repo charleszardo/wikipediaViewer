@@ -84,11 +84,6 @@ $(document).ready(function() {
 		});
 	}
 	
-	$("#submit").click(function() {
-		var queryString = $("#query").val();
-		wikipediaSearch(queryString, false, 10);
-	})
-	
 	$("#random").click(function() {
 		OpenInNewTab(randomUrl);
 		randomPage();
